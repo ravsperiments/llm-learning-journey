@@ -16,6 +16,7 @@ def prepare_features(df):
 
     # Impute VIP: Assume False if spent nothing and not VIP, else mode
     df['VIP'] = df['VIP'].fillna(False)
+    df['VIP'] = df['VIP'].astype(bool)
 
     # Age → fill with median
     df['Age'] = df['Age'].fillna(df['Age'].median())
@@ -29,6 +30,14 @@ def prepare_features(df):
     df['VIP'] = df['VIP'].astype(int)
 
     # Encode 'Sex' as 0 (female) and 1 (male)
-    df['Sex'] = df['Sex'].map({'male': 1, 'female': 0})
+    #df['Sex'] = df['Sex'].map({'male': 1, 'female': 0})
+
+    # Encode all bool columns to 0s and 1s
+    for col in df.columns:
+        if df[col].dropna().isin([True, False]).all():
+            df[col] = df[col].astype(int)
 
     return df
+
+def encode_features(df, categorical_cols):
+    return pd.get_dummies(df, columns=categorical_cols, drop_first=False, dtype=int)
