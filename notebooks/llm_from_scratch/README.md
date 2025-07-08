@@ -7,12 +7,14 @@ This is a fun side project in my deep learning journey, where I'm building a lan
 
 
 ### 04-Jul-2025 ###
-> Implemented an embeddings lookup table to encode tokenized Asimov text. This table acts as a compressed alternative to one-hot encoding.
-> Instead of using a sparse one-hot vector with 50,000 dimensions (one for each vocabulary entry), we map each token ID directly to a weight (embedding) vector of a lower dimension, such as 128 or 256.
-> Mathematically, this works because multiplying a one-hot vector by a weight matrix of shape [vocab_size, embedding_dim] simply selects the row corresponding to the token ID. Since all entries in the one-hot vector are zero except at the token's index, the result of the matrix multiplication is just the relevant row of the embedding matrix.
-> The embeddings matrix is thus a lookup table where each row is the embedding for a specific token.
-> In a way, these embeddings can be imagined as a layer in the neural network with just weights and no biases. These weights are learned through gradient descent, just like any other model parameters.
-> This is very powerful, as weights for related concepts — such as pet animals like dogs and cats — start to cluster together during the learning process organically, which is so cool.
+>
+- Implemented an embeddings lookup table to encode tokenized Asimov text. This table acts as a compressed alternative to one-hot encoding.
+Instead of using a sparse one-hot vector with 50,000 dimensions (one for each vocabulary entry), we map each token ID directly to a weight (embedding) vector of a lower dimension, such as 128 or 256.
+- Mathematically, this works because multiplying a one-hot vector by a weight matrix of shape [vocab_size, embedding_dim] simply selects the row corresponding to the token ID. Since all entries in the one-hot vector are zero except at the token's index, the result of the matrix multiplication is just the relevant row of the embedding matrix.
+- The embeddings matrix is thus a lookup table where each row is the embedding for a specific token.
+- In a way, these embeddings can be imagined as a layer in the neural network with just weights and no biases. These weights are learned through gradient descent, just like any other model parameters.
+- This is very powerful, as weights for related concepts — such as pet animals like dogs and cats — start to cluster together during the learning process organically, which is so cool.
+>
 
 ### 02-Jul-2025 ###
 > Implemented a simple tokenizer and used it to tokenize the text of Asimov's first book in the Foundation series
